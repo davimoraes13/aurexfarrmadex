@@ -12,7 +12,7 @@ Agent/Skill Factory e orquestrador.
 
 ## Executar a API (requer instalação de dependências)
     pip install -r requirements.txt
-    uvicorn backend.api.main:app --reload
+    uvicorn main:app --reload
     # GET http://localhost:8000/health
 
 ## Estrutura
@@ -26,3 +26,8 @@ Agent/Skill Factory e orquestrador.
     backend/database/   persistência (SQLite)
     docs/               arquitetura e segurança
     tests/              testes automatizados
+
+## Deploy
+O ponto de entrada é `main.py` (raiz), que reexporta `app` de `backend/api/main.py`.
+Observação: o estado das missões na API fica em memória e o SQLite é local; em plataformas
+serverless (ex.: Vercel) isso **não persiste** entre requisições. Para produção, use PostgreSQL.
